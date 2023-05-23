@@ -1,0 +1,44 @@
+Managed Services Solutions: Programming Tasks
+
+Languages & Technologies: Python, JS, JQUERY, AJAX, MySQL, HTML, CSS, JQuery Datatable, Redis
+Framework: Django
+
+Imagine we have a database of 10 employees with their details. The database also contains
+a table where incidents are reported in the form of tickets. An employee’s job is to resolve
+the incident by working on the ticket that is assigned to him.
+
+Task 1:
+Implement a simple application in Python Django to Add, Edit, Delete and List all the tickets
+we have in the database. Each ticket should have information like ticket number, ticket
+creation date, description, resolution end date.
+
+Task 2:
+Every employee has a duty roster that is used to allocate day to day tasks for them, each
+task being a ticket created in the database.
+
+Implement a dashboard which shows the tasks allocated to these employees based on their
+daily duty roster. Duty roster should contain information like employee name, employee
+start time and end time and employee availability status. Tickets should be allocated
+considering, which employee is available on a particular day and which employees are on
+leave.
+
+The application should follow the MVC structure. Send us the code along with the
+instruction to run and the database schema.
+The UI is hosted as a simple Django application and back-end is hosted as a separate
+Django Rest Framework application.
+The request from UI application is served by the backend Django Rest Framework which is
+hosted separately. Connection to the Database should ONLY be from the backend Django
+Rest Framework application. You can use any database of your choice. MySQL,
+PostgreSQL or Oracle. Database should have minimum tables for keeping employee data,
+
+employee roster details, ticket details and task allocation. Other tables can be created and
+used as and when it is required.
+The backend Django Rest Framework application should implement all the request types
+like GET, POST, PUT and DELETE.
+1. Use jQuery DataTable to list the tickets.
+2. The ticket list DataTable should be searchable on individual fields, and the result should
+come from the backend.
+3. Ticket allocation to the employees should happen automatically when new ticket is
+created in the database.
+4. If there is employees A, B, C, first ticket should go to A, second ticket to B and then third
+ticket to C. After that the fourth ticket should again go to A.

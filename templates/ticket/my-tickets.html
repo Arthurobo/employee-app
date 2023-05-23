@@ -1,0 +1,48 @@
+{% extends 'base-dashboard.html' %}
+    
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div style="text-align: center; justify-content: center;">
+          <h1 class="my-2">Tickets</h1>
+        </div>
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Ticket Number</th>
+                <th scope="col">Employee</th>
+                <th scope="col">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ticket in tickets %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                
+                <td>
+                  <a href="{{ ticket.get_employee_update_url }}">{{ ticket.user.user.first_name }} {{ ticket.user.user.last_name }}</a>
+                </td>
+
+                <td><a href="{{ ticket.get_employee_update_url }}">{{ ticket.ticket_number }}</a></td>
+                <td><a href="{{ ticket.get_employee_update_url }}">{{ ticket.employee.user.first_name }} {{ ticket.employee.user.last_name }}</a></td></td>
+
+                {% if ticket.finalized %}
+                <td><a href="{{ ticket.get_employee_update_url }}" class="btn btn-success btn-sm" style="border-radius: 20px;">Finalized</a></td>
+                {% else %}
+                <td><a href="{{ ticket.get_employee_update_url }}" class="btn btn-warning btn-sm" style="border-radius: 20px;">Pending</a></td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+
+        </div>
+    </div>
+  </div>
+
+  {% endblock content %}

@@ -1,0 +1,48 @@
+{% extends 'base-dashboard.html' %}
+    
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div style="text-align: center; justify-content: center;">
+          <h1 class="my-2">Duty Roaster</h1>
+        </div>
+        <div class="row">
+          
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Ticket</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for roster in duty_roster %}
+                    <tr>
+                        <td>{{ roster.employee.user.first_name }} {{ roster.employee.user.last_name }}</td>
+                        <td>{{ roster.ticket }}</td>
+                        <td>{{ roster.start_time }}</td>
+                        <td>{{ roster.end_time }}</td>
+                        <td>
+                            {% if roster.availability_status %}
+                                <span class="badge badge-success">Available</span>
+                            {% else %}
+                                <span class="badge badge-danger">On Leave</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+  </div>
+
+  {% endblock content %}
+  

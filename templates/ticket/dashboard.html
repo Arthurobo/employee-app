@@ -1,0 +1,53 @@
+{% extends 'base-dashboard.html' %}
+    
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div style="text-align: center; justify-content: center;">
+          <h1 class="my-2">Tickets</h1>
+        </div>
+        {% if request.user.is_admin %}
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Ticket Number</th>
+                <th scope="col">Employee</th>
+                <th scope="col">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ticket in tickets %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ ticket.user.user.first_name }} {{ ticket.user.user.last_name }}</td>
+                <td>{{ ticket.ticket_number }}</td>
+                <td>{{ ticket.employee.user.first_name }} {{ ticket.employee.user.last_name }}</td></td>
+                <td><a class="btn btn-primary" style="border-radius: 20px;">Edit</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+
+        </div>
+        {% else %}
+        <div class="" style="text-align: center; justify-content: center;">
+          <div>
+            <h4>Oops, only admins can see all the tickets</h4>
+          </div>
+          {% if request.user.is_employee %}
+          <div>
+            <p>Please visit the link below to access all tickets assigned to you , thanks</p>
+          </div>
+          <a href="{% url 'ticket:my-tickets' %}" class="btn btn-primary">Assigned Tickets</a>
+          {% endif %}
+        </div>
+        {% endif %}
+    </div>
+  </div>
+
+  {% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'base-dashboard.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div style="text-align: center; justify-content: center;">
+          <h1 class="my-4">Update Tickets</h1>
+        </div>
+        <div class="row" style="margin: auto; justify-content: center;">
+            <form method="post">{% csrf_token %}
+              <div class="p-2 mt-2">
+                <label class="form-label bold-label">Descripton*</label>
+                {{ form.description|add_required_class:"is-required form-control" }}
+              </div>
+              <div class="p-2 mt-2">
+                <label class="form-label bold-label">Finalize*</label>
+                {{ form.finalized|add_required_class:"is-required form-control select" }}
+              </div>
+              <div style="text-align: center; justify-content: center;">
+                <!-- <button type="submit" class="btn btn-primary">Add Ticket</button> -->
+                <button type="submit">Submit</button>
+              </div>
+              </form>
+        </div>
+    </div>
+  </div>
+  {% else %}
+  
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+      <div style="text-align: center; justify-content: center;">
+        <h1 class="my-4">Please Login</h1>
+        <a href="{% url 'accounts:login' %}" class="btn btn-primary">Login</a>
+      </div>
+  </div>
+</div>
+  {% endif %}
+
+  {% endblock content %}
